@@ -1,5 +1,5 @@
 frontend:
-	bash component/frontend
+	bash components/frontend.sh
 
 cart:
-	bash component/cart
+	bash components/cart.sh
