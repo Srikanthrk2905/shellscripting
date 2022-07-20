@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 USER_ID=$(id -u)
 if [ "$USER_ID" -ne 0 ];then
   echo you should be root user to run this command
@@ -9,13 +10,17 @@ fi
 echo -e "\e[36m Installing Nginx \e[0m"
 
 yum install nginx -y
+
+STATUS_() {
 if [ $? -eq 0 ]; then
   echo -e "\e[32m SUCCESS \e[0m"
 else
   echo -e "\e[31m FAILURE \e[0m"
   exit 2
 fi
+}
 
+STATUS
 echo -e "\e[36m download Nginx \e[0m"
 curl -f -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
 if [ $? -eq 0 ]; then
@@ -72,3 +77,5 @@ else
   echo -e "\e[31m FAILURE \e[0m"
   exit 2
 fi
+
+}
