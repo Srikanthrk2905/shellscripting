@@ -16,7 +16,7 @@ else
   exit 2
 fi
 
-echo -e "\e[36m download Ngnix \e[0m"
+echo -e "\e[36m download Nginx \e[0m"
 curl -f -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
 if [ $? -eq 0 ]; then
   echo -e "\e[32m SUCCESS \e[0m"
@@ -25,7 +25,7 @@ else
   exit 2
 fi
 
-echo -e "\e[36m Clean old and download new Ngnix Arcive \e[0m"
+echo -e "\e[36m Clean old and download new Nginx Arcive \e[0m"
 rm -rf /usr/share/nginx/html/*
 
 if [ $? -eq 0 ]; then
