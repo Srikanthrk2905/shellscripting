@@ -6,13 +6,13 @@ if [ "$USER_ID" -ne 0 ];then
   exit 1
 fi
 
-echo -e "\[36m Installing Nginx\e[0m"
+echo -e "\e[36mInstalling Nginx\e[0m"
 
 yum install nginx -y
 if [ $? -eq 0 ]; then
-  echo -e "\[32m Installing Nginx\e[0m"SUCCESS
+  echo -e "\e[32mSUCCESS\e[0m"
 else
-  echo "\[31m Installing Nginx\e[0m"FAILURE
+  echo -e "\e[31mFAILURE\e[0m"
   exit 2
 fi
 
