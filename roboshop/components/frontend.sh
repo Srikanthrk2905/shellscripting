@@ -8,19 +8,25 @@ else
 fi
 }
 
+print() {
+  echo -e "\e[36m $1 \e[0m"
+}
+
 USER_ID=$(id -u)
 if [ "$USER_ID" -ne 0 ];then
   echo you should be root user to run this command
   exit 1
 fi
 
-echo -e "\e[36m Installing Nginx \e[0m"
+print Installing Nginx
 yum install nginx -y
 StatCheck $?
-echo -e "\e[36m download Nginx \e[0m"
+
+print download Nginx
 curl -f -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
 StatCheck $?
-echo -e "\e[36m Clean old and download new Nginx Arcive \e[0m"
+
+print Clean old and download new Nginx Arcive
 rm -rf /usr/share/nginx/html/*
 cd /usr/share/nginx/html/
 unzip /tmp/frontend.zip
@@ -29,12 +35,12 @@ mv static/* .
 rm -rf frontend-main README.md
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 StatCheck $?
-echo -e "\e[36m restart Nginx \e[0m"
+print restart Nginx
 systemctl restart nginx
 StatCheck $?
-echo -e "\e[36m Enabling Nginx \e[0m"
+print Enabling Nginx
 systemctl enable nginx
 StatCheck $?
-echo -e "\e[36m Starting Nginx \e[0m"
+print Starting Nginx
 systemctl start nginx
 StatCheck $?
