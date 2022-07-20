@@ -18,15 +18,15 @@ if [ "$USER_ID" -ne 0 ];then
   exit 1
 fi
 
-print Installing Nginx
+print "Installing Nginx"
 yum install nginx -y
 StatCheck $?
 
-print download Nginx
+print "download Nginx"
 curl -f -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
 StatCheck $?
 
-print Clean old Nginx
+print "Clean old Nginx"
 rm -rf /usr/share/nginx/html/*
 StatCheck $?
 
@@ -40,12 +40,12 @@ print "Update Roboshop configuration"
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 StatCheck $?
 
-print restart Nginx
+print "restart Nginx"
 systemctl restart nginx
 StatCheck $?
-print Enabling Nginx
+print "Enabling Nginx"
 systemctl enable nginx
 StatCheck $?
-print Starting Nginx
+print "Starting Nginx"
 systemctl start nginx
 StatCheck $?
