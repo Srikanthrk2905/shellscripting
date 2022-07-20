@@ -1,6 +1,6 @@
 #!/bin/bash
 
-USER_ID=$(id-u)
+USER_ID=$(id -u)
 if ["$USER_ID" -ne 0]
   echo you should be root user to run this command
   exit 1
