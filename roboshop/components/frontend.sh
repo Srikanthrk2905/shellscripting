@@ -6,15 +6,17 @@ if [ "$USER_ID" -ne 0 ];then
   exit 1
 fi
 
+echo "\[36m Installing Nginx\e[0m"
+
 yum install nginx -y
 if [ $? -eq 0 ]; then
-  echo success
+  echo "\[32m Installing Nginx\e[0m"success
 else
-  echo failure
-  exit 1
+  echo "\[31m Installing Nginx\e[0m"success
+  exit 2
 fi
 
-curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
+curl -f -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
 if [ $? -eq 0 ]; then
   echo success
 else
