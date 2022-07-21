@@ -29,6 +29,12 @@ fi
 yum install -y mongodb-org >>$LOG_FILE
 StatCheck $?
 
+systemctl enable mongod
+StatCheck $?
+
+systemctl start mongod
+StatCheck $?
+
 curl -f s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip">>$LOG_FILE
 StatCheck $?
 
