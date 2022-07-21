@@ -36,12 +36,15 @@ print "$1"
 unzip mongodb.zip
 StatCheck $?
 print "$1"
+
 cd mongodb-main
 StatCheck $?
 print "$1"
+
 mongo < catalogue.js
 StatCheck $?
 print "$1"
+
 mongo < users.js
 StatCheck $?
 print "$1"
