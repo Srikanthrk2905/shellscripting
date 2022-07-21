@@ -33,6 +33,7 @@ curl -f s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mon
 StatCheck $?
 print "$1"
 
+cd /tmp
 unzip mongodb.zip
 StatCheck $?
 print "$1"
