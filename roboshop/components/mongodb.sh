@@ -1,4 +1,5 @@
 #!/bin/bash
+
 StatCheck() {
 if [ $1 -eq 0 ]; then
   echo -e "\e[32m SUCCESS \e[0m"
