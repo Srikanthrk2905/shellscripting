@@ -17,7 +17,7 @@ print() {
 }
 
 curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo
-StatCheck
+StatCheck $?
 print "$1"
 
 USER_ID=$(id -u)
@@ -27,21 +27,21 @@ if [ "$USER_ID" -ne 0 ];then
 fi
 
 yum install -y mongodb-org >>$LOG_FILE
-StatCheck
+StatCheck $?
 print "$1"
 curl -f s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip">>$LOG_FILE
-StatCheck
+StatCheck $?
 print "$1"
 
 unzip mongodb.zip
-StatCheck
+StatCheck $?
 print "$1"
 cd mongodb-main
-StatCheck
+StatCheck $?
 print "$1"
 mongo < catalogue.js
-StatCheck
+StatCheck $?
 print "$1"
 mongo < users.js
-StatCheck
+StatCheck $?
 print "$1"
