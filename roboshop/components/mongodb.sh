@@ -39,8 +39,6 @@ StatCheck $?
 print "$1"
 
 cd mongodb-main
-StatCheck $?
-print "$1"
 
 mongo < catalogue.js
 StatCheck $?
