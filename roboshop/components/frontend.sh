@@ -7,8 +7,10 @@ else
   exit 2
 fi
 }
+
 LOG_FILE=/tmp/roboshop.log
 rm -f $LOG_FILE
+
 print() {
   echo -e "\e[36m $1 \e[0m"
 }
