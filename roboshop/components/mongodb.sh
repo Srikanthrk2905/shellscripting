@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source component/common. sh
+source components/common.sh
 
 print "setup yum repos"
 curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo
