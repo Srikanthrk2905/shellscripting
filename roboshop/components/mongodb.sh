@@ -29,7 +29,7 @@ yum install -y mongodb-org >>$LOG_FILE
 StatCheck $?
 
 print "listen to mongodb ip address change"
-sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongo.conf
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 StatCheck $?
 
 print "Start Mongodb"
