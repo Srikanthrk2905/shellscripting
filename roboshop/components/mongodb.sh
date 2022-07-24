@@ -8,47 +8,32 @@ else
   exit 2
 fi
 }
-
-LOG_FILE=/tmp/roboshop.log
-rm -f $LOG_FILE
-
 print() {
   echo -e "\e[36m $1 \e[0m"
 }
-
-curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo
-StatCheck $?
-
 
 USER_ID=$(id -u)
 if [ "$USER_ID" -ne 0 ];then
   echo you should be root user to run this command
   exit 1
 fi
+LOG_FILE=/tmp/roboshop.log
+rm -f $LOG_FILE
 
+print "setup yum repos"
+curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo
+StatCheck $?
+
+print "install mongodb"
 yum install -y mongodb-org >>$LOG_FILE
 StatCheck $?
 
-systemctl enable mongod
+print "listen to mongodb ip address change"
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongo.conf
 StatCheck $?
 
-systemctl start mongod
-StatCheck $?
-
-curl -f s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip">>$LOG_FILE
-StatCheck $?
-
-
-cd /tmp
-unzip mongodb.zip
+print "Start Mongodb"
+systemctl enable mongod && systemctl start mongod
 StatCheck $?
 
 
-cd mongodb-main
-
-mongo < catalogue.js
-StatCheck $?
-
-
-mongo < users.js
-StatCheck $?
