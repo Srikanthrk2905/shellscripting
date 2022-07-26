@@ -6,6 +6,7 @@ else
   exit 2
 fi
 }
+
 print() {
   echo -e "\e[36m $1 \e[0m"
 }
@@ -15,5 +16,6 @@ if [ "$USER_ID" -ne 0 ];then
   echo you should be root user to run this command
   exit 1
 fi
+
 LOG_FILE=/tmp/roboshop.log
 rm -f $LOG_FILE
