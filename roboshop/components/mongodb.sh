@@ -24,6 +24,7 @@ StatCheck $?
 
 print "extract schema"
 cd /tmp && unzip mongodb.zip &>>LOG_FILE
+
 print "load schema"
 cd mongodb-main &>>LOG_FILE && mongo < catalogue.js &>>LOG_FILE && mongo < users.js &>>LOG_FILE
 StatCheck $?
